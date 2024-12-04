@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        /* Navigation bar styling */
+        nav {
+            background-color: #4CAF50;
+            overflow: hidden;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center; /* Center the nav elements */
+        }
+        nav a {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            background-color: #45a049;
+        }
+        /* Form styling */
+        #uploadForm {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #dropZone {
+            border: 2px dashed #4CAF50;
+            padding: 20px;
+            text-align: center;
+            background-color: #fafafa;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #dropZone.highlight {
+            background-color: #e0ffe0;
+        }
+        #dropZone p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+        .highlight {
+            font-size: 24px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        #loading {
+            text-align: center;
+            color: #2196F3;
+            display: none;
+        }
+        #imagePreview {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Extended Navigation Bar -->
+    <nav>
+        <a href=" #">Home</a>
+        <a href="#">Upload Image</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Help</a>
+    </nav>
+
+    <h1>Plant Disease Prediction</h1>
+    <form id="uploadForm">
+        <div id="dropZone">
+            <p>Drag & Drop Image Here or Click to Upload</p>
+        </div>
+        <input type="file" id="imageFile" accept="image/*" required>
+        <img id="imagePreview" alt="Image Preview">
+        <button type="submit">Predict</button>
+    </form>
+    <div id="loading">Loading...</div>
+    <div id="result"></div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('imageFile');
+        const preview = document.getElementById('imagePreview');
+
+        // Open file input when clicking the drop zone
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        // Highlight the drop zone when dragging a file over it
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('highlight');
+        });
+
+        // Remove highlight when dragging leaves the drop zone
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('highlight');
+        });
+
+        // Handle file drop
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('highlight');
+            const files = e.dataTransfer.files;
+
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        // Handle file input change (when file is selected manually)
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+
+        // Function to display image preview
+        function handleFile(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const button = event.target.querySelector('button');
+            const loading = document.getElementById('loading');
+            const resultDiv = document.getElementById('result');
+
+            // Disable button and show loading message
+            button.disabled = true;
+            loading.style.display = 'block';
+            resultDiv.innerHTML = '';
+
+            // Prepare form data to send to the backend
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                // Make the POST request to the API
+                const response = await fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Prediction failed');
+                }
+
+                const result = await response.json();
+                const confidence = result.confidence;
+                 // Assuming confidence is a number (percentage)
+
+                // Check if confidence is less than 20%
+                if (confidence < 20) {
+                    resultDiv.innerHTML = `<p style="color:red;">Prediction is too low (${confidence}%). Please upload a clearer image or retake the picture for a more accurate prediction.</p>`;
+                } else {
+                    // Display the result with highlighted prediction
+                    resultDiv.innerHTML = `
+                        Predicted Class: <span class="highlight">${result.predicted_class}</span><br>
+                        Confidence: <span class="highlight">${confidence}%</span>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+            } finally {
+                // Re-enable the button and hide the loading message
+                button.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

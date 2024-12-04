@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        nav {
+            background-color: #4CAF50;
+            overflow: hidden;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            background-color: #45a049;
+        }
+        #uploadForm {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #cameraContainer, #dropZone {
+            border: 2px dashed #4CAF50;
+            padding: 20px;
+            text-align: center;
+            background-color: #fafafa;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #dropZone p, #cameraContainer p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+        .highlight {
+            font-size: 24px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        #loading {
+            text-align: center;
+            color: #2196F3;
+            display: none;
+        }
+        #imagePreview, #cameraPreview {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Upload Image</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Help</a>
+    </nav>
+
+    <h1>Plant Disease Prediction</h1>
+    <form id="uploadForm">
+        <!-- Camera Preview and Capture Section -->
+        <div id="cameraContainer">
+            <p>Live Camera Preview (Click to Capture)</p>
+            <video id="cameraPreview" autoplay></video>
+        </div>
+        
+        <!-- File Upload Section -->
+        <div id="dropZone">
+            <p>Drag & Drop Image Here or Click to Upload</p>
+        </div>
+        <input type="file" id="imageFile" accept="image/*">
+
+        <img id="imagePreview" alt="Image Preview">
+        <button type="submit">Predict</button>
+    </form>
+    <div id="loading">Loading...</div>
+    <div id="result"></div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('imageFile');
+        const preview = document.getElementById('imagePreview');
+        const cameraPreview = document.getElementById('cameraPreview');
+        let cameraStream;
+        let capturedImageDataUrl = null; // Variable to hold the captured image data
+
+        // Automatically start the camera when the page loads
+        window.onload = () => {
+            startCamera();
+        };
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('highlight');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('highlight');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('highlight');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+
+        function handleFile(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                capturedImageDataUrl = null; // Clear captured image data if file is chosen
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function startCamera() {
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraPreview.srcObject = cameraStream;
+                cameraPreview.style.display = 'block';
+            } catch (error) {
+                alert('Unable to access camera.');
+            }
+        }
+
+        cameraPreview.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = cameraPreview.videoWidth;
+            canvas.height = cameraPreview.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
+            capturedImageDataUrl = canvas.toDataURL('image/png'); // Save captured image data
+            preview.src = capturedImageDataUrl;
+            preview.style.display = 'block';
+            stopCamera();
+        });
+
+        function stopCamera() {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraPreview.style.display = 'none';
+            cameraStream = null;
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const button = event.target.querySelector('button');
+            const loading = document.getElementById('loading');
+            const resultDiv = document.getElementById('result');
+
+            button.disabled = true;
+            loading.style.display = 'block';
+            resultDiv.innerHTML = '';
+
+            let imageData;
+            if (capturedImageDataUrl) {
+                // Use captured image from camera
+                imageData = capturedImageDataUrl;
+            } else if (fileInput.files.length > 0) {
+                // Use uploaded file if available
+                const file = fileInput.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+                imageData = formData;
+            } else {
+                resultDiv.innerHTML = `<p style="color:red;">Please provide an image to predict.</p>`;
+                button.disabled = false;
+                loading.style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://192.168.0.101:5000/predict', {
+                    method: 'POST',
+                    body: imageData
+                });
+                const result = await response.json();
+                const confidence = result.confidence;
+                if (confidence < 20) {
+                    resultDiv.innerHTML = `<p style="color:red;">Prediction is too low (${confidence}%). Please upload a clearer image or retake the picture for a more accurate prediction.</p>`;
+                } else {
+                    resultDiv.innerHTML = `
+                        Predicted Class: <span class="highlight">${result.predicted_class}</span><br>
+                        Confidence: <span class="highlight">${confidence}%</span>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+            } finally {
+                button.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

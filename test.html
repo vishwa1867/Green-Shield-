@@ -1,0 +1,59 @@
+]<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+</head>
+<body>
+    <h1>Plant Disease Prediction</h1>
+
+    <!-- File input to select image -->
+    <input type="file" id="file-input" accept="image/*">
+    <br><br>
+    <button onclick="predict()">Predict Disease</button>
+
+    <h2 id="result">Prediction Result: </h2>
+
+    <!-- Inline JavaScript -->
+    <script>
+        async function predict() {
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please upload an image.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = async function () {
+                const base64Image = reader.result.split(',')[1];
+
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ image: base64Image })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        document.getElementById("result").innerText = "Prediction Result: " + result.prediction;
+                    } else {
+                        const error = await response.json();
+                        alert("Error: " + error.detail);
+                    }
+                } catch (error) {
+                    console.error("Error during prediction:", error);
+                    alert("Failed to predict. Please try again.");
+                }
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

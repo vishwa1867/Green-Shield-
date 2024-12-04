@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="v.css">
+</head>
+<body>
+    
+    
+    <style>
+        body {
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+        }
+    </style>
+    
+    
+
+    <div class="wrapper">
+        <h1>Weather App</h1>
+
+        <div class="tab-container">
+            <p class="tab" data-userWeather>Your Weather</p>
+            <p class="tab" data-searchWeather>Search Weather</p>
+        </div>
+
+        <div class="weather-container">
+            <!-- Grant Location Container -->
+            <div class="sub-container grant-location-container">
+                <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726229594/Screenshot_2024-09-13_174250_d9cfcu.png" width="80" height="80" loading="lazy" alt="Grant Location Access">
+                <p>Grant Location Access</p>
+                <p>Allow Access to get weather Information</p>
+                <button class="btn" data-grantAccess>Grant Access</button>
+            </div>
+
+            <!-- Search Form -->
+            <form class="form-container" data-searchForm>
+                <label for="searchInput">Search for City:</label>
+                <input id="searchInput" placeholder="Search for City..." data-searchInput>
+                <button class="btn" type="submit">
+                    <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/v1726229379/Screenshot_2024-09-13_173925_bp96qj.png" width="20" height="20" loading="lazy" alt="Search">
+                </button>
+            </form>
+
+            <!-- Loading Screen Container -->
+            <div class="sub-container loading-container">
+                <img src="./assets/loading.gif" width="150" height="150" alt="Loading">
+                <p>Loading</p>
+            </div>
+
+            <!-- Weather Info -->
+            <div class="sub-container user-info-container">
+                <!-- City Name and Flag -->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon alt="Country Flag">
+                </div>
+
+                <!-- Weather Description -->
+                <p data-weatherDesc></p>
+                <!-- Weather Icon -->
+                <img data-weatherIcon alt="Weather Icon">
+                <!-- Temperature -->
+                <p data-temp></p>
+
+                <!-- 3 Cards - Parameters -->
+                <div class="parameter-container">
+                    <!-- Card 1 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/v1726228199/WhatsApp_Image_2024-09-13_at_3.32.05_PM_o9jokm.jpg" alt="Windspeed">
+                        <p>Windspeed</p>
+                        <p data-windspeed></p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726228709/Screenshot_2024-09-13_172814_pqngyl.png" alt="Humidity">
+                        <p>Humidity</p>
+                        <p data-humidity></p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726228621/Screenshot_2024-09-13_172641_ejup1k.png" alt="Cloudiness">
+                        <p>Clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="liveweather.js"></script>
+</body>
+</html>

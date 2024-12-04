@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दस्तावेज़</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="v.css">
+</head>
+<body>
+    
+    <style>
+        body {
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="wrapper">
+        <h1>मौसम एप्लिकेशन</h1>
+
+        <div class="tab-container">
+            <p class="tab" data-userWeather>आपका मौसम</p>
+            <p class="tab" data-searchWeather>मौसम खोजें</p>
+        </div>
+
+        <div class="weather-container">
+            <!-- स्थान की अनुमति दें -->
+            <div class="sub-container grant-location-container">
+                <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726229594/Screenshot_2024-09-13_174250_d9cfcu.png" width="80" height="80" loading="lazy" alt="स्थान अनुमति दें">
+                <p>स्थान अनुमति दें</p>
+                <p>मौसम जानकारी प्राप्त करने के लिए अनुमति दें</p>
+                <button class="btn" data-grantAccess>अनुमति दें</button>
+            </div>
+
+            <!-- खोज फ़ॉर्म -->
+            <form class="form-container" data-searchForm>
+                <label for="searchInput">शहर खोजें:</label>
+                <input id="searchInput" placeholder="शहर खोजें..." data-searchInput>
+                <button class="btn" type="submit">
+                    <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/v1726229379/Screenshot_2024-09-13_173925_bp96qj.png" width="20" height="20" loading="lazy" alt="खोजें">
+                </button>
+            </form>
+
+            <!-- लोडिंग स्क्रीन कंटेनर -->
+            <div class="sub-container loading-container">
+                <img src="./assets/loading.gif" width="150" height="150" alt="लोडिंग">
+                <p>लोडिंग</p>
+            </div>
+
+            <!-- मौसम जानकारी -->
+            <div class="sub-container user-info-container">
+                <!-- शहर का नाम और झंडा -->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon alt="राष्ट्रीय ध्वज">
+                </div>
+
+                <!-- मौसम विवरण -->
+                <p data-weatherDesc></p>
+                <!-- मौसम आइकन -->
+                <img data-weatherIcon alt="मौसम आइकन">
+                <!-- तापमान -->
+                <p data-temp></p>
+
+                <!-- 3 कार्ड - पैरामीटर -->
+                <div class="parameter-container">
+                    <!-- कार्ड 1 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/v1726228199/WhatsApp_Image_2024-09-13_at_3.32.05_PM_o9jokm.jpg" alt="हवा की गति">
+                        <p>हवा की गति</p>
+                        <p data-windspeed></p>
+                    </div>
+
+                    <!-- कार्ड 2 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726228709/Screenshot_2024-09-13_172814_pqngyl.png" alt="नमी">
+                        <p>नमी</p>
+                        <p data-humidity></p>
+                    </div>
+
+                    <!-- कार्ड 3 -->
+                    <div class="parameter">
+                        <img src="https://res.cloudinary.com/daiw2mcvd/image/upload/e_background_removal/f_png/v1726228621/Screenshot_2024-09-13_172641_ejup1k.png" alt="बादल">
+                        <p>बादल</p>
+                        <p data-cloudiness></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="liveweather.js"></script>
+</body>
+</html>

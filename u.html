@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <script>
+        async function predict() {
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+            const output = document.getElementById('output');
+
+            if (result.error) {
+                output.innerHTML = `Error: ${result.error}`;
+            } else {
+                output.innerHTML = `Predicted Class: ${result.predicted_class} <br> Confidence: ${result.confidence}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Plant Disease Prediction</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="predict()">Predict</button>
+    <div id="output"></div>
+</body>
+</html>
