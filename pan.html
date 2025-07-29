@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punjab Soil and Crops - Green Shield</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e6ffe6; /* Light green background */
+      color: #064420; /* Dark green text */
+    }
+    .scrolling-images {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scrolling-images img {
+      animation: scroll 30s linear infinite;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+    <div class="border-2 border-green-700 p-4 text-center bg-green-100">
+      <p class="text-green-800 mb-2 font-bold">Soil Distribution in Punjab</p>
+      <img src="punjab-agro-climatie.jpg" alt="Soil Distribution in Punjab" class="w-full h-full object-cover mb-4" style="height:100%; max-height:100vh;" />
+    </div>
+    <div>
+      <h1 class="text-4xl font-bold text-green-900 mb-6">Punjab Soil and Crops</h1>
+      <h2 class="text-2xl font-semibold text-green-800 mb-4">Soil in Punjab</h2>
+      <p class="mb-4">Punjab primarily has <strong>Alluvial Soil</strong>, highly fertile due to the rivers Sutlej, Beas, and Ravi.</p>
+      <h2 class="text-2xl font-semibold text-green-800 mb-4">Types of Soil in Punjab</h2>
+      <h3 class="text-xl font-medium text-green-700 mb-2">Alluvial Soil</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Location:</strong> Ludhiana, Jalandhar, Amritsar, Patiala</li>
+        <li><strong>Characteristics:</strong> Rich in potash, phosphoric acid, lime; deficient in nitrogen, organic matter</li>
+        <li><strong>Suitable Crops:</strong> Wheat, Rice, Sugarcane, Pulses, Oilseeds, Fruits, Vegetables</li>
+      </ul>
+      <h3 class="text-xl font-medium text-green-700 mb-2">Loamy and Clayey Soil</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Location:</strong> Regions with irrigation facilities</li>
+        <li><strong>Suitable Crops:</strong> Cotton, Barley, Maize</li>
+      </ul>
+      <h2 class="text-2xl font-semibold text-green-800 mb-4">Irrigation in Punjab</h2>
+      <p class="mb-4">Punjab benefits from an extensive canal system and tube wells, supported by the Bhakra-Nangal Dam.</p>
+      <h2 class="text-2xl font-semibold text-green-800 mb-4">Crop Rotation in Punjab</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li>Wheat-Rice Rotation: Wheat (Rabi) and Rice (Kharif)</li>
+        <li>Maize-Potato Rotation: Maize (Summer) and Potato (Winter)</li>
+      </ul>
+      <h2 class="text-2xl font-semibold text-green-800 mb-4">Challenges</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li>Decreasing soil fertility due to overuse of fertilizers</li>
+        <li>Salinity and waterlogging</li>
+        <li>Soil erosion from over-irrigation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Image Scrolling Section at the bottom -->
+  <div class="scrolling-images space-x-4 py-2 border-t border-green-700 bg-green-200">
+    <img src="punjab-agro-climatie.jpg" alt="Wheat Field" class="h-32 object-cover mx-2" />
+    <img src="punjab-agro-climatie.jpg" alt="Rice Field" class="h-32 object-cover mx-2" />
+    <img src="punjab-agro-climatie.jpg" alt="Cotton Field" class="h-32 object-cover mx-2" />
+    <img src="punjab-agro-climatie.jpg" alt="Sugarcane Field" class="h-32 object-cover mx-2" />
+    <img src="punjab-agro-climatie.jpg" alt="Vegetable Cultivation" class="h-32 object-cover mx-2" />
+  </div>
+</body>
+</html>

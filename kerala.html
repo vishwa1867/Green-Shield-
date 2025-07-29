@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kerala Soil and Crops - Green Shield</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .scrolling-images {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scrolling-images img {
+      animation: scroll 30s linear infinite;
+      width: 100%;
+      height: 212px;
+      object-fit: cover;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-green-100 text-gray-900 text-lg leading-relaxed">
+  <nav class="bg-green-800 text-white p-6 text-lg font-semibold shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Green Shield</h1>
+      <ul class="flex space-x-8">
+        <li><a href="#" class="hover:text-green-400">Home</a></li>
+        <li><a href="#" class="hover:text-green-400">About</a></li>
+        <li><a href="#" class="hover:text-green-400">Soil & Crops</a></li>
+        <li><a href="#" class="hover:text-green-400">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="bg-green-700 text-white text-center py-16">
+    <h1 class="text-5xl font-extrabold">Kerala Soil & Crop Guide</h1>
+    <p class="text-2xl mt-4 max-w-3xl mx-auto">A comprehensive resource on soil distribution, best crops, and farming techniques in Kerala.</p>
+  </header>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 text-center border border-green-600 col-span-1 md:col-span-2">
+      <p class="text-green-900 mb-4 font-bold text-2xl">Soil Distribution in Kerala</p>
+      <img src="kmap.jpg" alt="Soil Distribution in Kerala" class="w-full h-auto object-cover rounded-md mb-6" style="max-height:60vh;" />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 border border-green-600">
+      <h2 class="text-3xl font-bold text-green-900 mb-6">Best Crops for Kerala</h2>
+      <p class="text-lg mb-6">Kerala's soil is rich and diverse: <strong>Laterite Soil</strong> (ideal for coconut and rubber), <strong>Alluvial Soil</strong> (best for rice and banana), and <strong>Sandy Soil</strong> (suitable for spices like black pepper and cardamom).</p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-green-600">
+      <h3 class="text-2xl font-semibold text-green-900 mb-4">Agricultural Challenges</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Heavy monsoons causing floods and soil erosion</li>
+        <li>Limited availability of cultivable land due to urbanization</li>
+        <li>Dependence on cash crops leading to reduced food crop production</li>
+      </ul>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-green-600 col-span-1 md:col-span-2">
+      <h3 class="text-2xl font-semibold text-green-900 mb-4">Market Trends & Profits</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>High global demand for Kerala spices like cardamom and black pepper</li>
+        <li>Growing organic farming sector with increased exports</li>
+        <li>Rubber plantations as a significant contributor to the economy</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="bg-green-500 py-16">
+    <div class="max-w-7xl mx-auto px-10">
+      <h2 class="text-4xl font-bold text-green-900 mb-6">Expert Recommendations</h2>
+      <p class="text-lg mb-6">Experts recommend integrating traditional farming methods with modern technology to sustain Kerala’s rich agricultural heritage.</p>
+      <ul class="list-disc list-inside text-lg">
+        <li>Precision farming to optimize water usage.</li>
+        <li>Soil conservation methods to prevent erosion.</li>
+        <li>Promoting mixed cropping to ensure sustainability.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="scrolling-images space-x-6 py-6 border-t border-green-700">
+    <img src="ke1.jpg" alt="Coconut Plantations" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ke2.jpg" alt="Rice Fields" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ke3.jpg" alt="Rubber Estates" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ke4.JPG" alt="Spice Plantations" class="h-56 object-cover mx-3 rounded-lg" />
+  </div>
+
+  <footer class="bg-green-800 text-white text-center py-8 mt-10 text-lg font-semibold shadow-md">
+    <p>&copy; 2025 Green Shield. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

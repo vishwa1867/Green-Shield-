@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haryana Soil and Crops - Green Shield</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .scrolling-images {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scrolling-images img {
+      animation: scroll 30s linear infinite;
+      width: 100%;
+      height: 212px;
+      object-fit: cover;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-yellow-100 text-yellow-900 text-lg leading-relaxed">
+  <nav class="bg-yellow-700 text-white p-6 text-lg font-semibold shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Green Shield</h1>
+      <ul class="flex space-x-8">
+        <li><a href="#" class="hover:text-yellow-300">Home</a></li>
+        <li><a href="#" class="hover:text-yellow-300">About</a></li>
+        <li><a href="#" class="hover:text-yellow-300">Soil & Crops</a></li>
+        <li><a href="#" class="hover:text-yellow-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="bg-yellow-600 text-white text-center py-16">
+    <h1 class="text-5xl font-extrabold">Haryana Soil & Crop Guide</h1>
+    <p class="text-2xl mt-4 max-w-3xl mx-auto">A detailed guide on soil types, best crops, and farming techniques.</p>
+  </header>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 text-center border border-gray-300 col-span-1 md:col-span-2">
+      <p class="text-yellow-700 mb-4 font-bold text-2xl">Soil Distribution in Haryana</p>
+      <img src="haryana map.jpeg" alt="Soil Distribution in Haryana" class="w-full h-auto object-cover rounded-md mb-6" style="max-height:50vh;" />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300">
+      <h2 class="text-3xl font-bold text-yellow-700 mb-6">Best Crops for Haryana</h2>
+      <p class="text-lg mb-6">Haryana has Alluvial Soil and Loamy Soil, making it ideal for crops like Wheat, Rice, Mustard, and Sugarcane.</p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300">
+      <h3 class="text-2xl font-semibold text-yellow-600 mb-4">Agricultural Challenges</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Overuse of chemical fertilizers leading to soil degradation</li>
+        <li>Water depletion due to intensive wheat-rice cropping</li>
+        <li>Pollution from stubble burning</li>
+      </ul>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300 col-span-1 md:col-span-2">
+      <h3 class="text-2xl font-semibold text-yellow-600 mb-4">Market Trends & Profits</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Haryana is India's largest wheat producer</li>
+        <li>Mustard and sugarcane farming have increasing demand</li>
+        <li>Adopting crop diversification can improve profitability</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="bg-gray-200 py-16">
+    <div class="max-w-7xl mx-auto px-10">
+      <h2 class="text-4xl font-bold text-yellow-900 mb-6">Expert Recommendations</h2>
+      <p class="text-lg mb-6">Experts suggest precision farming, water conservation, and alternate crops to sustain Haryana’s agriculture.</p>
+      <ul class="list-disc list-inside text-lg">
+        <li>Switching to Maize and Pulses can reduce water consumption</li>
+        <li>Promoting organic farming for long-term soil health</li>
+        <li>Adopting zero-tillage and stubble management/li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="scrolling-images space-x-6 py-6 border-t border-gray-400">
+    <img src="haryana1.webp" alt="Wheat Field" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="haryana2.jpg" alt="Rice Farm" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="haryana4.jpg" alt="Mustard Farm" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="haryana3.avif" alt="Sugarcane Farm" class="h-56 object-cover mx-3 rounded-lg" />
+  </div>
+
+  <footer class="bg-yellow-700 text-white text-center py-8 mt-10 text-lg font-semibold shadow-md">
+    <p>&copy; 2025 Green Shield. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

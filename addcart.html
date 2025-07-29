@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Grow - Organic Fertilizer</title>
+    <link rel="stylesheet" href="ecommerce.css">
+    <script src="2.js"></script>
+
+    <style>
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0dc007;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+    <div id="news-popup" class="news-popup"></div>
+
+    <header class="header">
+        <h1>Green Grow</h1>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="1.html" class="cart-link">🛒 Cart</a>
+            <input type="text" placeholder="Search for products..." class="search-bar">
+            <button class="search-button">Search</button>
+        </nav>
+    </header> <!-- Main Product Section -->
+    
+    <section id="products" class="products-section">
+        <h2>Our Top Fertilizers</h2>
+
+        <!-- Product 1 -->
+        <div class="product-page">
+            <div class="product-gallery">
+                <img src="images/615ogT1U-KL.SL1044.jpg" alt="Organic Fertilizer" class="main-image">
+                <div class="thumbnail-row">
+                    <img src="images/71ggCuSVSvL.SL1500.jpg" alt="Thumbnail 1" class="thumbnail">
+                    <img src="images/81CeeA8vVpL.SL1500.jpg" alt="Thumbnail 2" class="thumbnail">
+                    <img src="images/89.jpg" alt="Thumbnail 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-details">
+                <h2>Organic Fertilizer - All Natural Plant Boost</h2>
+                <div class="product-rating">★★★★☆ (200 Reviews)</div>
+                <p class="product-price">₹300</p>
+                <p>Organic fertilizer perfect for vegetables, flowers, and more. Increases yield and promotes healthy plant growth.</p>
+                <button class="add-to-cart" onclick="showNotification('Added to cart!')">Add to Cart</button>
+                <button class="buy-now" onclick="showNotification('Purchase successful!')">Buy Now</button>
+            </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-page">
+            <div class="product-gallery">
+                <img src="images/t1.jpg" alt="Nitrogen-Rich Fertilizer" class="main-image">
+                <div class="thumbnail-row">
+                    <img src="images/t2.jpg" alt="Thumbnail 1" class="thumbnail">
+                    <img src="images/t3.jpg" alt="Thumbnail 2" class="thumbnail">
+                    <img src="images/t4.jpg" alt="Thumbnail 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-details">
+                <h2>Nitrogen-Rich Fertilizer - Growth Formula</h2>
+                <div class="product-rating">★★★★☆ (150 Reviews)</div>
+                <p class="product-price">₹250</p>
+                <p>Encourages lush foliage for leafy greens and improves overall plant vitality.</p>
+                <button class="add-to-cart" data-name="Nitrogen Fertilizer" data-price="250">Add to Cart</button>
+                <button class="buy-now" onclick="showNotification('Purchase successful!')">Buy Now</button>
+            </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-page">
+            <div class="product-gallery">
+                <img src="images/d1.jpg" alt="Phosphorus Fertilizer" class="main-image">
+                <div class="thumbnail-row">
+                    <img src="images/d2.jpg" alt="Thumbnail 1" class="thumbnail">
+                    <img src="images/d3.jpg" alt="Thumbnail 2" class="thumbnail">
+                    <img src="images/d4.jpg" alt="Thumbnail 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-details">
+                <h2>Phosphorus Fertilizer - Root Strengthener</h2>
+                <div class="product-rating">★★★★☆ (175 Reviews)</div>
+                <p class="product-price">₹199</p>
+                <p>Specially formulated to strengthen roots and enhance flowering for vibrant plants.</p>
+                <button class="add-to-cart" data-name="Phosphorus Fertilizer" data-price="199">Add to Cart</button>
+                <button class="buy-now" onclick="showNotification('Purchase successful!')">Buy Now</button>
+            </div>
+        </div>  
+    </section>
+    <!-- 🛒 Cart Section -->
+    <div id="cart" class="cart">
+        <h3>🛒 Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Green Grow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            let existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            updateCart();
+            showNotification('Added to cart!');
+        }
+
+        function updateCart() {
+            let cartItemsDiv = document.getElementById("cart-items");
+            let cartTotalSpan = document.getElementById("cart-total");
+            let cartCountSpan = document.getElementById("cart-count");
+
+            cartItemsDiv.innerHTML = "";
+            let total = 0;
+            let itemCount = 0;
+
+            cart.forEach(item => {
+                let itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                itemCount += item.quantity;
+
+                cartItemsDiv.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>₹${itemTotal}</span>
+                    </div>
+                `;
+            });
+
+            cartTotalSpan.textContent = total;
+            cartCountSpan.textContent = itemCount;
+        }
+
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        function toggleCart() {
+            var cartDiv = document.getElementById('cart');
+            cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function() {
+                let name = this.getAttribute("data-name");
+                let price = parseInt(this.getAttribute("data-price"));
+                addToCart(name, price);
+            });
+        });
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        updateCart();
+
+        function addToCart(button) {
+            const product = button.parentElement;
+            const name = product.dataset.name;
+            const price = parseFloat(product.dataset.price);
+            cart.push({ name, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+            showNotification(`${name} added to cart!`);
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            const cartCount = document.getElementById("cart-count");
+            
+            cartList.innerHTML = "";
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                const li = document.createElement("li");
+                li.textContent = `${item.name} - $${item.price}`;
+                const removeBtn = document.createElement("button");
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = () => removeItem(index);
+                li.appendChild(removeBtn);
+                cartList.appendChild(li);
+            });
+
+            cartTotal.textContent = total.toFixed(2);
+            cartCount.textContent = cart.length;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            localStorage.removeItem("cart");
+            updateCart();
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.classList.remove("hidden");
+            setTimeout(() => notification.classList.add("hidden"), 3000);
+        }
+
+        
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Green Grow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 10000);
+        }
+
+        function showNewsPopup(news) {
+            var newsPopup = document.getElementById('news-popup');
+            newsPopup.textContent = news;
+            newsPopup.style.display = 'block';
+            setTimeout(function() {
+                newsPopup.style.display = 'none';
+            }, 5000);
+        }
+
+        window.onload = function() {
+            showNewsPopup('Breaking: News  ');
+            setTimeout(function() { showNewsPopup('🔔 Price Surge Alert: Onion prices have spiked to ₹70/kg due to supply disruptions from recent floods. Stock up wisely!'); }, 10000);
+            setTimeout(function() { showNewsPopup('🔔 Market Update: Green chilli prices drop! Now available at ₹50-₹60/kg due to oversupply. Grab them fresh!'); }, 20000);
+            setTimeout(function() { showNewsPopup('🔔 Consumer Notice: Tomato and potato prices may rise soon! Plan your grocery shopping accordingly.'); }, 30000);
+            setTimeout(function() { showNewsPopup('🔔 Wholesale Insight: Capsicum and carrots remain stable, but retailers expect price hikes soon. Stay updated!'); }, 40000);
+            setTimeout(function() { showNewsPopup('🔔 Price Drop Alert: Cabbage and bottle gourd prices have decreased—get them at lower rates while supplies last!'); }, 50000);
+            setTimeout(function() { showNewsPopup('🔔 Urgent Advisory: Heavy rains impact vegetable supply! Expect fluctuations in onion, tomato, and potato prices this week'); }, 60000);
+        };
+        cart.length;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            localStorage.removeItem("cart");
+            updateCart();
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.classList.remove("hidden");
+            setTimeout(() => notification.classList.add("hidden"), 3000);
+        }
+    </script>
+    </script>
+    
+</body>
+</html>

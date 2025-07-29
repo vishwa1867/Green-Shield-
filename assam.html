@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assam Soil and Crops - Green Shield</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .scrolling-images {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scrolling-images img {
+      animation: scroll 30s linear infinite;
+      width: 100%;
+      height: 212px;
+      object-fit: cover;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-yellow-900 text-yellow-100 text-lg leading-relaxed">
+  <nav class="bg-yellow-800 text-yellow-200 p-6 text-lg font-semibold shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Green Shield</h1>
+      <ul class="flex space-x-8">
+        <li><a href="#" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="#" class="hover:text-yellow-400">About</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Soil & Crops</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="bg-yellow-700 text-yellow-200 text-center py-16">
+    <h1 class="text-5xl font-extrabold">Assam Soil & Crop Guide</h1>
+    <p class="text-2xl mt-4 max-w-3xl mx-auto">A comprehensive resource on soil distribution, best crops, and farming techniques in Assam.</p>
+  </header>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-yellow-800 shadow-md rounded-lg p-6 text-center border border-yellow-600 col-span-1 md:col-span-2">
+      <p class="text-yellow-200 mb-4 font-bold text-2xl">Soil Distribution in Assam</p>
+      <img src="asmm.jpg" alt="Soil Distribution in Assam" class="w-full h-auto object-cover rounded-md mb-6" style="max-height:60vh;" />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-yellow-800 shadow-md rounded-lg p-6 border border-yellow-600">
+      <h2 class="text-3xl font-bold text-yellow-200 mb-6">Best Crops for Assam</h2>
+      <p class="text-lg mb-6">Assam's soil is fertile and supports diverse agriculture: <strong>Alluvial Soil</strong> (ideal for rice and jute), <strong>Laterite Soil</strong> (best for tea plantations), and <strong>Sandy Soil</strong> (good for vegetables and mustard).</p>
+    </div>
+    <div class="bg-yellow-800 shadow-md rounded-lg p-6 border border-yellow-600">
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-4">Agricultural Challenges</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Frequent floods damaging crops</li>
+        <li>Soil erosion due to heavy rainfall</li>
+        <li>Lack of advanced irrigation infrastructure</li>
+      </ul>
+    </div>
+    <div class="bg-yellow-800 shadow-md rounded-lg p-6 border border-yellow-600 col-span-1 md:col-span-2">
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-4">Market Trends & Profits</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Assam tea has a high global demand</li>
+        <li>Growing market for organic rice and mustard</li>
+        <li>Silk farming and horticulture provide sustainable income</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="bg-yellow-600 py-16">
+    <div class="max-w-7xl mx-auto px-10">
+      <h2 class="text-4xl font-bold text-yellow-200 mb-6">Expert Recommendations</h2>
+      <p class="text-lg mb-6">Experts suggest combining traditional farming with modern techniques to enhance Assam’s agricultural productivity.</p>
+      <ul class="list-disc list-inside text-lg">
+        <li>Improved flood-resistant crop varieties</li>
+        <li>Soil conservation methods to prevent degradation</li>
+        <li>Advanced irrigation systems for year-round farming</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="scrolling-images space-x-6 py-6 border-t border-yellow-700">
+    <img src="ass1.jpg" alt="Tea Plantations" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ass2.avif" alt="Rice Fields" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ass3.jpg" alt="Jute Farming" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="ass4.jpg" alt="Mustard Fields" class="h-56 object-cover mx-3 rounded-lg" />
+  </div>
+
+  <footer class="bg-yellow-800 text-yellow-200 text-center py-8 mt-10 text-lg font-semibold shadow-md">
+    <p>&copy; 2025 Green Shield. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

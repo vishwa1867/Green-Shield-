@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Images</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+        .shoe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            z-index: 10;
+        }
+        .rotating-img {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 1s linear;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="shoe.png" alt="Shoe" class="shoe">
+    <img src="image1.jpg" alt="Image 1" class="rotating-img" id="img1">
+    <img src="image2.jpg" alt="Image 2" class="rotating-img" id="img2">
+    <img src="image3.jpg" alt="Image 3" class="rotating-img" id="img3">
+    <img src="image4.jpg" alt="Image 4" class="rotating-img" id="img4">
+</div>
+
+<script>
+    const images = document.querySelectorAll('.rotating-img');
+    let angle = 0;
+    const radius = 120;
+
+    function updatePositions() {
+        images.forEach((img, index) => {
+            let offset = (360 / images.length) * index;
+            let x = radius * Math.cos((angle + offset) * (Math.PI / 180));
+            let y = radius * Math.sin((angle + offset) * (Math.PI / 180));
+            img.style.transform = `translate(${x + 150}px, ${y + 150}px)`;
+        });
+        angle += 30;
+    }
+
+    setInterval(updatePositions, 1000);
+</script>
+
+</body>
+</html>

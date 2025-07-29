@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Shield Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const language = document.getElementById('language').value;
+      alert(`Hi ${name}, welcome to Green Shield!`);
+      if (language === 'English') {
+        window.location.href = 'english.html';
+      } else if (language === 'Telugu') {
+        window.location.href = 'telugu.html';
+      } else if (language === 'Hindi') {
+        window.location.href = 'hindi.html';
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .form-container {
+      position: relative;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      background: linear-gradient(135deg, #f0fff0 0%, #c6f6d5 100%);
+      animation: slideIn 3.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 4;
+      left: 1;
+      width: 150%;
+      height: 150%;
+      background-image: url('image-removebg-preview (6).png'); /* Replace with actual logo URL */
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      z-index: -0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2 class="text-2xl font-semibold mb-6 text-center text-green-700">Login to Green Shield</h2>
+    <form onsubmit="handleSubmit(event)">
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Name</label>
+        <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Email</label>
+        <input type="email" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Phone Number</label>
+        <input type="tel" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Age</label>
+        <input type="number" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Occupation</label>
+        <input type="text" class="w-full p-2 border border-gray-300 rounded" required />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2 text-gray-700">Preferred Language</label>
+        <select id="language" class="w-full p-2 border border-gray-300 rounded" required>
+          <option value="English">English</option>
+          <option value="Telugu">Telugu</option>
+          <option value="Hindi">Hindi</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 transform transition hover:scale-105">Login</button>
+    </form>
+  </div>
+</body>
+</html>

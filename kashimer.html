@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kashmir Soil and Crops - Green Shield</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .scrolling-images {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scrolling-images img {
+      animation: scroll 30s linear infinite;
+      width: 100%;
+      height: 212px;
+      object-fit: cover;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 text-lg leading-relaxed">
+  <nav class="bg-green-700 text-white p-6 text-lg font-semibold shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Green Shield</h1>
+      <ul class="flex space-x-8">
+        <li><a href="#" class="hover:text-green-300">Home</a></li>
+        <li><a href="#" class="hover:text-green-300">About</a></li>
+        <li><a href="#" class="hover:text-green-300">Soil & Crops</a></li>
+        <li><a href="#" class="hover:text-green-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="bg-green-600 text-white text-center py-16">
+    <h1 class="text-5xl font-extrabold">Kashmir Soil & Crop Guide</h1>
+    <p class="text-2xl mt-4 max-w-3xl mx-auto">A comprehensive resource on soil distribution, best crops, and farming techniques in Kashmir.</p>
+  </header>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 text-center border border-gray-300 col-span-1 md:col-span-2">
+      <p class="text-green-700 mb-4 font-bold text-2xl">Soil Distribution in Kashmir</p>
+      <img src=" Geological-map-of-Kashmir-Valley-showing-the-distribution-of-Karewa-Group-of-sediments.png" alt="Soil Distribution in Kashmir" class="w-full h-auto object-cover rounded-md mb-6" style="max-height:90vh;" />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300">
+      <h2 class="text-3xl font-bold text-green-700 mb-6">Best Crops for Kashmir</h2>
+      <p class="text-lg mb-6">Kashmir is known for its <strong>Alluvial Soil</strong> (ideal for rice and wheat), <strong>Mountain Soil</strong> (best for saffron and apples), and <strong>Peaty Soil</strong> (suitable for vegetables and floriculture).</p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300">
+      <h3 class="text-2xl font-semibold text-green-600 mb-4">Agricultural Challenges</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Extreme winter temperatures affecting crop cycles</li>
+        <li>Waterlogging issues in certain regions</li>
+        <li>Soil erosion in hilly terrains</li>
+      </ul>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-6 border border-gray-300 col-span-1 md:col-span-2">
+      <h3 class="text-2xl font-semibold text-green-600 mb-4">Market Trends & Profits</h3>
+      <ul class="list-disc list-inside text-lg mb-6">
+        <li>Saffron and apples have high export value</li>
+        <li>Organic farming is gaining momentum</li>
+        <li>Floriculture and medicinal herbs are profitable sectors</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="bg-gray-200 py-16">
+    <div class="max-w-7xl mx-auto px-10">
+      <h2 class="text-4xl font-bold text-green-900 mb-6">Expert Recommendations</h2>
+      <p class="text-lg mb-6">Experts suggest adopting terrace farming, greenhouse cultivation, and organic fertilizers to maintain soil health and increase productivity.</p>
+      <ul class="list-disc list-inside text-lg">
+        <li>Drip irrigation conserves water and improves yield.</li>
+        <li>Mulching retains soil moisture and enhances fertility.</li>
+        <li>Greenhouse farming enables year-round crop production.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="scrolling-images space-x-6 py-6 border-t border-gray-400">
+    <img src="kim1.jpg" alt="Saffron Field" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="kim2.jpg" alt="Apple Orchard" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="kim3.png" alt="Wheat Field" class="h-56 object-cover mx-3 rounded-lg" />
+    <img src="kim4.webp" alt="Floriculture Farm" class="h-56 object-cover mx-3 rounded-lg" />
+  </div>
+
+  <footer class="bg-green-700 text-white text-center py-8 mt-10 text-lg font-semibold shadow-md">
+    <p>&copy; 2025 Green Shield. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
